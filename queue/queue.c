@@ -15,6 +15,10 @@ typedef struct queue {
 typedef Q_ELEM* Q_ELEM_PTR;
 typedef Q* Q_PTR;
 
+/* Func: create_queue
+ * Desc: Create a new queue. Returns pointer to head of queue
+ *
+ */
 void *create_queue()
 {
 	Q_PTR new_queue = malloc(sizeof(*new_queue));
@@ -27,6 +31,11 @@ void *create_queue()
 	return(new_queue);
 }
 
+/* Func: destroy_queue
+ * Desc: Delete queue head. 
+ *       WARNING!! Responsibility of user to check queue is empty before deleting head
+ *
+ */
 void destroy_queue(void *queue)
 {
 	Q_PTR q = (Q_PTR)queue;
@@ -39,6 +48,10 @@ void destroy_queue(void *queue)
 	free(q);
 }
 
+/* Func: add_elem_to_queue
+ * Desc: Add an element to tail of the queue
+ *
+ */
 void add_elem_to_queue(void *queue, void *data)
 {
 	Q_PTR q = (Q_PTR)queue;
@@ -69,6 +82,10 @@ void add_elem_to_queue(void *queue, void *data)
 	q->len++;
 }
 
+/* Func: remove_elem_from_queue
+ * Desc: Remove an element from head of the queue
+ *
+ */
 void *remove_elem_from_queue(void *queue)
 {
 	Q_PTR q = (Q_PTR)queue;
@@ -95,6 +112,10 @@ void *remove_elem_from_queue(void *queue)
 	return(data);
 }
 
+/* Func: peek_queue
+ * Desc: Peek an element from the queue with given index
+ *
+ */
 void *peek_queue(void *queue, int index)
 {
 	Q_PTR q = (Q_PTR)queue;
@@ -120,6 +141,10 @@ void *peek_queue(void *queue, int index)
 	return(elem->data);
 }
 
+/* Func: len_queue
+ * Desc: Returns length of queue
+ *
+ */
 unsigned int len_queue(void *queue)
 {
 	Q_PTR q = (Q_PTR)queue;
@@ -130,4 +155,13 @@ unsigned int len_queue(void *queue)
 	}
 
 	return(q->len);
+}
+
+/* Func: is_empty_queue
+ * Desc: Tells if queue is empty
+ *
+ */
+unsigned int is_empty_queue(void *queue)
+{
+	return len_queue(queue);
 }
